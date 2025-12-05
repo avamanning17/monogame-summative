@@ -4,13 +4,19 @@ using Microsoft.Xna.Framework.Input;
 
 namespace monogame_summative 
 {
+    enum Screen
+    {
+        FirstScreen,
+        FieldScreen,
+        LastScreen
+    }
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
         Rectangle window;
-        SpriteFont introText, outroText;
+        SpriteFont instructionText;
 
         MouseState mouseState;
 
@@ -26,7 +32,7 @@ namespace monogame_summative
 
         Color backColor;
 
-        screen screen;
+        Screen screen;
 
         public Game1()
         {
@@ -43,9 +49,9 @@ namespace monogame_summative
             _graphics.PreferredBackBufferHeight = window.Height;
             _graphics.ApplyChanges();
 
-            screen = firstBackground;
-            screen = lastBackground;
-            screen = feild;
+            screen = Screen.FirstScreen;
+            screen = Screen.FieldScreen;
+            screen = Screen.LastScreen;
 
             horseRect = new Rectangle();
             poleJumpRect = new Rectangle();
@@ -70,8 +76,8 @@ namespace monogame_summative
             lastBackgroundTexture = Content.Load<Texture2D>("lastBackground");
             feildTexture = Content.Load<Texture2D>("feild");
 
-            introText = Content.Load<SpriteFont>("firstBackground");
-            outroText = Content.Load<SpriteFont>("lastBackground");
+            instructionText = Content.Load<SpriteFont>("InsructionText");
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -81,19 +87,44 @@ namespace monogame_summative
 
             // TODO: Add your update logic here
 
+            if (screen == Screen.FirstScreen)
+            {
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                    screen = Screen.FieldScreen;
+                _spriteBatch.Draw(firstBackground, window);
+            }
+            else if (screen == Screen.FieldScreen)
+            {
+
+            }
+            else if (screen == Screen.LastScreen)
+            {
+
+            }
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White;
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
+            if (screen == Screen.FirstScreen)
+            {
+                
+            }
+            else if (screen == Screen.FieldScreen)
+            {
+                _spriteBatch.Draw(horseTexture, horseRect, Color.White);
+                _spriteBatch.Draw(doubleJumpTexture, doubleJumpRect, Color.White);
+                _spriteBatch.Draw(waterJumpTexture, waterJumpRect, Color.White);
+                _spriteBatch.Draw(poleJumpTexture, poleJumpRect, Color.White);
+            }
+            else if (screen == Screen.LastScreen)
+            {
 
-            _spriteBatch.Draw(horseTexture, horseRect, Color.White);
-            _spriteBatch.Draw(doubleJumpTexture, doubleJumpRect, Color.White);
-            _spriteBatch.Draw(waterJumpTexture, waterJumpRect, Color.White);
-            _spriteBatch.Draw(poleJumpTexture, poleJumpRect, Color.White);
+            }
+            
 
             base.Draw(gameTime);
         }

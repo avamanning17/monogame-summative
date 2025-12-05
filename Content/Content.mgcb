@@ -49,13 +49,6 @@
 /processorParam:TextureFormat=Color
 /build:firstBackground.jfif
 
-#begin firstBackground.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:firstBackground.spritefont
-
 #begin horse.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -68,6 +61,13 @@
 /processorParam:TextureFormat=Color
 /build:horse.png
 
+#begin InsructionText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:InsructionText.spritefont
+
 #begin lastBackground.jfif
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -79,13 +79,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:lastBackground.jfif
-
-#begin lastBackground.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:lastBackground.spritefont
 
 #begin poleJump.png
 /importer:TextureImporter
