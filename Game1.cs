@@ -18,11 +18,13 @@ namespace monogame_summative
         Rectangle window;
         SpriteFont instructionText;
 
+        //SpriteFont exitText, startText;
+
         MouseState mouseState;
 
         Texture2D firstBackgroundTexture, feildTexture, lastBackgroundTexture;
 
-        Rectangle doubleJumpRect, horseRect, poleJumpRect, waterJumpRect;
+        Rectangle doubleJumpRect, horseRect, poleJumpRect, waterJumpRect, firstBackgroundRect, feildRect, lastBackgroundRect;
 
         Texture2D doubleJumpTexture, horseTexture, poleJumpTexture, waterJumpTexture;
 
@@ -50,13 +52,13 @@ namespace monogame_summative
             _graphics.ApplyChanges();
 
             screen = Screen.FirstScreen;
-            screen = Screen.FieldScreen;
-            screen = Screen.LastScreen;
+           
 
-            horseRect = new Rectangle();
-            poleJumpRect = new Rectangle();
+            horseRect = new Rectangle( 60, 370, 85, 210);
+            poleJumpRect = new Rectangle(200, 440, 150, 150);
             doubleJumpRect = new Rectangle();
             waterJumpRect = new Rectangle();
+            
             horseSpeed = new Vector2();
 
             base.Initialize();
@@ -86,20 +88,25 @@ namespace monogame_summative
                 Exit();
 
             // TODO: Add your update logic here
+            mouseState = Mouse.GetState();
+            this.Window.Title = mouseState.Position.ToString();
 
             if (screen == Screen.FirstScreen)
             {
+
                 if (mouseState.LeftButton == ButtonState.Pressed)
                     screen = Screen.FieldScreen;
-                _spriteBatch.Draw(firstBackground, window);
+                
             }
             else if (screen == Screen.FieldScreen)
             {
-
+                if (mouseState.RightButton == ButtonState.Pressed)
+                    screen = Screen.LastScreen;
             }
             else if (screen == Screen.LastScreen)
             {
-
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                    Exit();
             }
             base.Update(gameTime);
         }
@@ -107,14 +114,18 @@ namespace monogame_summative
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-
+            _spriteBatch.Begin();
             // TODO: Add your drawing code here
             if (screen == Screen.FirstScreen)
             {
-                
+                _spriteBatch.Draw(firstBackgroundTexture, window, Color.White);
+
+                _spriteBatch.DrawString(instructionText, "Left Click To Start The Race!", new Vector2(), Color.White);
             }
             else if (screen == Screen.FieldScreen)
             {
+                _spriteBatch.Draw(feildTexture, window, Color.White);
+
                 _spriteBatch.Draw(horseTexture, horseRect, Color.White);
                 _spriteBatch.Draw(doubleJumpTexture, doubleJumpRect, Color.White);
                 _spriteBatch.Draw(waterJumpTexture, waterJumpRect, Color.White);
@@ -122,9 +133,10 @@ namespace monogame_summative
             }
             else if (screen == Screen.LastScreen)
             {
-
+                _spriteBatch.Draw(lastBackgroundTexture, window, Color.White);
+                _spriteBatch.DrawString(instructionText, "Congradulations,You Win!", new Vector2(), Color.White);
             }
-            
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
