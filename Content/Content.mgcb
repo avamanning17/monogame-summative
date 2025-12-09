@@ -25,6 +25,12 @@
 /processorParam:TextureFormat=Color
 /build:doubleJump.png
 
+#begin endSound.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:endSound.mp3
+
 #begin feild.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -80,6 +86,12 @@
 /processorParam:TextureFormat=Color
 /build:lastBackground.jfif
 
+#begin mainSound.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:mainSound.mp3
+
 #begin poleJump.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -91,6 +103,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:poleJump.png
+
+#begin start.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:start.mp3
 
 #begin waterJump.png
 /importer:TextureImporter
