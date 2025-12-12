@@ -37,7 +37,7 @@ namespace monogame_summative
 
         Screen screen;
 
-        Song startMusic;
+        Song startMusic, mainSound, endSound;
 
         public Game1()
         {
@@ -83,7 +83,8 @@ namespace monogame_summative
             lastBackgroundTexture = Content.Load<Texture2D>("lastBackground");
             feildTexture = Content.Load<Texture2D>("feild");
             startMusic = Content.Load<Song>("start");
-
+            mainSound = Content.Load<Song>("mainSound");
+            endSound = Content.Load<Song>("endSound");
             instructionText = Content.Load<SpriteFont>("InsructionText");
             
         }
@@ -104,14 +105,13 @@ namespace monogame_summative
                 {
                     screen = Screen.FieldScreen;
                     MediaPlayer.Stop();
-                    MediaPlayer.Play();
+                    MediaPlayer.Play(mainSound);
                 }
 
             }
             else if (screen == Screen.FieldScreen)
             {
-                if (mouseState.RightButton == ButtonState.Pressed)
-                    screen = Screen.LastScreen;
+                
 
                 horseRect.X += (int)horseSpeed.X;
                 horseRect.Y += (int)horseSpeed.Y;
@@ -143,13 +143,20 @@ namespace monogame_summative
                 if (horseRect.X > 840)
                 {
                     screen = Screen.LastScreen;
+
+
                 }
 
             }
             else if (screen == Screen.LastScreen)
             {
+
+                MediaPlayer.Stop();
+                MediaPlayer.Play(endSound);
+
                 if (mouseState.LeftButton == ButtonState.Pressed)
                     Exit();
+                
 
             }
             
