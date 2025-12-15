@@ -143,16 +143,14 @@ namespace monogame_summative
                 if (horseRect.X > 840)
                 {
                     screen = Screen.LastScreen;
-
+                    MediaPlayer.Stop();
+                    MediaPlayer.Play(endSound);
 
                 }
 
             }
             else if (screen == Screen.LastScreen)
             {
-
-                MediaPlayer.Stop();
-                MediaPlayer.Play(endSound);
 
                 if (mouseState.LeftButton == ButtonState.Pressed)
                     Exit();
